@@ -4,14 +4,13 @@ from pathlib import Path
 
 from libs import get_input
 
-game_filter = re.compile(r"^Game ([\d]+): (.*)")
+game_filter = re.compile(r"^Game (\d+): (.*)")
 cube_filter = re.compile(r"((\d+) (\w+)){1,3}")
 
 
 def parse_game(
     game: str,
 ) -> tuple[int, int]:
-    rounds_cube = []
     cube_mins = {}
     matches = game_filter.findall(game)
     game_number = int(matches[0][0])
@@ -25,8 +24,6 @@ def parse_game(
             if not cube_mins.get(color, None) or value > cube_mins.get(color, None):
                 cube_mins[color] = value
     cube_pow = reduce(lambda x, y: x * y, [*cube_mins.values()])
-    print(f"cube_mins: {cube_mins}")
-    print(f"cube_pow: {cube_pow}")
     return game_number, cube_pow
 
 
