@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from functools import reduce
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Tuple
 
 from libs import get_input
 
@@ -26,8 +26,7 @@ class EnginePartNumber:
 
 def find_adjacent(
     symbol: EngineSymbol, engine_parts: List[EnginePartNumber]
-) -> tuple[bool, list[EnginePartNumber]]:
-    row = symbol.position.row
+) -> Tuple[bool, List[EnginePartNumber]]:
     adjacent_parts = []
     adjacent = False
     for e_part in engine_parts:
